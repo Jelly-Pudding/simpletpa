@@ -147,6 +147,12 @@ public final class SimpleTPA extends JavaPlugin {
             player.sendMessage(Component.text("You cannot teleport to yourself.").color(NamedTextColor.RED));
             return true;
         }
+        
+        // Check if players are in the same dimension
+        if (!player.getWorld().equals(target.getWorld())) {
+            player.sendMessage(Component.text("You cannot teleport to a player in a different dimension.").color(NamedTextColor.RED));
+            return true;
+        }
 
         // Cancel any existing request from this player
         cancelExistingRequests(player.getUniqueId());
@@ -227,6 +233,14 @@ public final class SimpleTPA extends JavaPlugin {
         // Check if this player actually sent a request
         if (!pendingRequesters.contains(requesterUUID)) {
             player.sendMessage(Component.text("You don't have a pending request from " + requesterName + ".").color(NamedTextColor.RED));
+            return true;
+        }
+        
+        // Check if players are in the same dimension
+        if (!player.getWorld().equals(requester.getWorld())) {
+            player.sendMessage(Component.text("You cannot accept a teleport request from a player in a different dimension.").color(NamedTextColor.RED));
+            teleportRequests.remove(targetUUID);
+            cancelExpirationTask(targetUUID);
             return true;
         }
 

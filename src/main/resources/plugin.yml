@@ -1,5 +1,5 @@
 name: SimpleTPA
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: com.jellypudding.simpleTPA.SimpleTPA
 api-version: '1.21'
 description: "Implements simple TPA commands with 2-minute request timeouts"

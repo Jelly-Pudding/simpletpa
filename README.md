@@ -9,6 +9,7 @@
 - Tab completion for both commands
 - Clear player messaging with request timers
 - Permissions-based access control (op-only by default)
+- Dimension restrictions: Players must be in the same dimension to teleport
 
 ## Installation
 1. Download the latest release [here](https://github.com/Jelly-Pudding/simpletpa/releases/latest).
@@ -37,6 +38,7 @@ request-cooldown: 10
 1. Player A sends a teleport request: `/tpa PlayerB`
 2. Player B receives a notification and can accept with: `/tpaccept PlayerA`
 3. If Player B doesn't respond within the configured timeout, the request expires automatically
+4. Both players must be in the same dimension (Overworld, Nether, or End)
 
 ## Support Me
 Donations will help me with the development of this project.
