@@ -247,7 +247,8 @@ public final class SimpleTPA extends JavaPlugin {
         }
 
         // Send messages
-        Component sentMessage = Component.text("Teleport request sent to ").color(NamedTextColor.GREEN)
+        Component sentMessage = Component.empty()
+            .append(Component.text("Teleport request sent to ").color(NamedTextColor.GREEN))
             .append(target.displayName())
             .append(Component.text(".").color(NamedTextColor.GREEN));
         player.sendMessage(sentMessage);
@@ -256,9 +257,10 @@ public final class SimpleTPA extends JavaPlugin {
         Component receivedMessage = player.displayName()
             .append(Component.text(" has requested to teleport to you.").color(NamedTextColor.GREEN));
         target.sendMessage(receivedMessage);
-        Component acceptMessage = Component.text("Type /tpaccept " + player.getName() + " to accept ").color(NamedTextColor.YELLOW)
+        Component acceptMessage = Component.empty()
+            .append(Component.text("Type /tpaccept ").color(NamedTextColor.YELLOW))
             .append(player.displayName())
-            .append(Component.text("'s request. This request will expire in " + timeoutDisplay + ".").color(NamedTextColor.YELLOW));
+            .append(Component.text(" to accept. This request will expire in " + timeoutDisplay + ".").color(NamedTextColor.YELLOW));
         target.sendMessage(acceptMessage);
 
         return true;
@@ -311,6 +313,25 @@ public final class SimpleTPA extends JavaPlugin {
 
         if (!allowCrossWorld && !player.getWorld().equals(requester.getWorld())) {
             player.sendMessage(Component.text("You cannot accept a teleport request from a player in a different dimension.").color(NamedTextColor.RED));
+            teleportRequests.remove(requestKey);
+            cancelExpirationTask(requestKey);
+            return true;
+        }
+
+        // Check if the requester is alive (not dead/on respawn screen)
+        if (requester.isDead()) {
+            Component deadMessage = Component.empty()
+                .append(Component.text("Cannot teleport ").color(NamedTextColor.RED))
+                .append(requester.displayName())
+                .append(Component.text(" - they are currently dead.").color(NamedTextColor.RED));
+            player.sendMessage(deadMessage);
+
+            Component requesterMessage = Component.empty()
+                .append(player.displayName())
+                .append(Component.text(" tried to accept your teleport request but you were dead. Request cancelled.").color(NamedTextColor.RED));
+            requester.sendMessage(requesterMessage);
+
+            // Clean up the request
             teleportRequests.remove(requestKey);
             cancelExpirationTask(requestKey);
             return true;
@@ -383,7 +404,8 @@ public final class SimpleTPA extends JavaPlugin {
             .append(Component.text(" has denied your teleport request.").color(NamedTextColor.RED));
         requester.sendMessage(deniedMessage);
 
-        Component confirmMessage = Component.text("You have denied ").color(NamedTextColor.YELLOW)
+        Component confirmMessage = Component.empty()
+            .append(Component.text("You have denied ").color(NamedTextColor.YELLOW))
             .append(requester.displayName())
             .append(Component.text("'s teleport request.").color(NamedTextColor.YELLOW));
         player.sendMessage(confirmMessage);
@@ -484,7 +506,8 @@ public final class SimpleTPA extends JavaPlugin {
         teleportRequests.remove(requestKey);
         cancelExpirationTask(requestKey);
 
-        Component cancelledMessage = Component.text("You have cancelled your teleport request to ").color(NamedTextColor.YELLOW)
+        Component cancelledMessage = Component.empty()
+            .append(Component.text("You have cancelled your teleport request to ").color(NamedTextColor.YELLOW))
             .append(target.displayName())
             .append(Component.text(".").color(NamedTextColor.YELLOW));
         player.sendMessage(cancelledMessage);
