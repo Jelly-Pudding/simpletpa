@@ -4,4 +4,7 @@
 request-timeout: 120
 
 # Cooldown in seconds between sending teleport requests
-request-cooldown: 10 
+request-cooldown: 10
+
+# Whether to allow cross-world teleportation
+allow-cross-world: false

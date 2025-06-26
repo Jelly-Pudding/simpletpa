@@ -1,9 +1,10 @@
 name: SimpleTPA
-version: '1.0'
+version: '1.1'
 main: com.jellypudding.simpleTPA.SimpleTPA
 api-version: '1.21'
 description: "Implements simple TPA commands with 2-minute request timeouts"
 author: AlphaAlex115
+website: www.minecraftoffline.net
 
 commands:
   tpa:
@@ -14,11 +15,25 @@ commands:
     description: Accept a pending teleport request
     usage: /tpaccept <player>
     permission: simpletpa.tpaccept
+  tpdeny:
+    description: Deny a pending teleport request
+    usage: /tpdeny <player>
+    permission: simpletpa.tpdeny
+  tpacancel:
+    description: Cancel your own teleport request
+    usage: /tpacancel [player|all]
+    permission: simpletpa.tpacancel
 
 permissions:
   simpletpa.tpa:
     description: Allows players to request teleportation to other players
-    default: op
+    default: true
   simpletpa.tpaccept:
     description: Allows players to accept teleport requests
-    default: op
+    default: true
+  simpletpa.tpdeny:
+    description: Allows players to deny teleport requests
+    default: true
+  simpletpa.tpacancel:
+    description: Allows players to cancel their own teleport requests
+    default: true
