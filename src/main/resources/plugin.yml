@@ -1,7 +1,7 @@
 name: SimpleTPA
 version: '${version}'
 main: com.jellypudding.simpleTPA.SimpleTPA
-api-version: '26.1.2'
+api-version: '26.2'
 description: "Implements simple TPA commands with 2-minute request timeouts"
 author: AlphaAlex115
 website: www.minecraftoffline.net

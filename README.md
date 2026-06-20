@@ -1,5 +1,5 @@
 # SimpleTPA Plugin
-**SimpleTPA** is a Minecraft Paper 26.1.2 plugin that implements teleport request functionality. Although it was custom built for [minecraftoffline.net](https://www.minecraftoffline.net), any server can use it.
+**SimpleTPA** is a Minecraft Paper 26.2 plugin that implements teleport request functionality. Although it was custom built for [minecraftoffline.net](https://www.minecraftoffline.net), any server can use it.
 
 ## Features
 - Send teleport requests to other players with `/tpa <player>`
