@@ -11,6 +11,10 @@ commands:
     description: Request to teleport to another player
     usage: /tpa <player>
     permission: simpletpa.tpa
+  tpahere:
+    description: Request another player to teleport to you
+    usage: /tpahere <player>
+    permission: simpletpa.tpahere
   tpaccept:
     description: Accept a pending teleport request
     usage: /tpaccept <player>
@@ -27,6 +31,9 @@ commands:
 permissions:
   simpletpa.tpa:
     description: Allows players to request teleportation to other players
+    default: true
+  simpletpa.tpahere:
+    description: Allows players to request that other players teleport to them
     default: true
   simpletpa.tpaccept:
     description: Allows players to accept teleport requests
